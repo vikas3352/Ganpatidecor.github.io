@@ -1,0 +1,1083 @@
+<html xmlns:v=""><head>
+   <meta http-equiv="X-UA-Compatible" content="IE=99">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta http-equiv="Expires" content="0">
+   <meta name="referrer" content="origin-when-cross-origin">
+   <title></title>
+   <style type="text/css">
+      #pptViewerAnchor-Met {
+         height: 100%;
+         width: 100%;
+         position: absolute;
+         left: 0;
+         top: 0;
+      }
+
+      .gaugeContainer {
+         width: 100%;
+         height: 80px;
+         position: relative;
+         overflow: hidden;
+         text-align: center;
+      }
+
+      .gaugeOuter {
+         z-index: 0;
+         position: absolute;
+         width: 180px;
+         height: 90px;
+         bottom: 14px;
+         transform: translateX(-50%);
+         left: 50%;
+      }
+
+      .gaugeTicker {
+         z-index: 0;
+         position: absolute;
+         width: auto;
+         height: auto;
+         bottom: 9.5px;
+         transform: translateX(-50%);
+         left: 50%;
+      }
+
+      .gaugePointer {
+         z-index: 0;
+         width: 0;
+         height: 0;
+         margin-bottom: -4px;
+      }
+
+      .gaugePivot {
+         z-index: 0;
+      }
+
+      .getStartedButton {
+         background: #b7472a;
+         color: #FFFFFF;
+         display: inline-block;
+         position: relative;
+         margin-top: 20px;
+         text-align: center;
+         width: 138px;
+         height: 32px;
+         border-radius: 2px;
+         border: none;
+         cursor: default;
+      }
+
+      .getStartedButton:active {
+         background: #740912;
+      }
+
+      .getStartedButton:hover,
+      .getStartedButton:focus {
+         background: #a92b1a;
+      }
+
+      .getStartedButton:disabled,
+      .getStartedButton[disabled] {
+         border: 0px;
+         background-color: rgba(255, 255, 255, 0.16);
+         color: rgba(255, 255, 255, 0.6);
+      }
+
+      .pulse {
+         box-shadow: 0 0 0 rgba(183, 71, 42, 0.3);
+         animation: pulse 2s infinite;
+      }
+
+      .listeningButtonState {
+         background: #ca5010;
+      }
+
+
+      .listeningButtonState:hover,
+      .listeningButtonState:focus {
+         background: #b1470e;
+      }
+
+      .getStartedButton:hover,
+      .listeningButtonState:hover {
+         outline: none;
+      }
+
+      .pausedButtonState {
+         background: #797775;
+      }
+
+      .pausedButtonState:hover,
+      .pausedButtonState:focus {
+         background: #605e5c;
+      }
+
+      .pausedButtonState:hover {
+         outline: none;
+      }
+
+      .SubtitleContainer {
+         width: 100%;
+         height: 11%;
+         border-width: 0;
+         position: absolute;
+         left: 0;
+         z-index: 50000;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         pointer-events: none;
+         overflow: hidden;
+      }
+
+      .SubtitleResultDiv
+      {
+         width: 70%;
+         margin-left: 15%;
+         margin-right: 15%;
+         position: absolute;
+         user-select: none;
+         z-index: 50000;
+         display: inline-block;
+         justify-content: center;
+         align-items: center;
+         left: 0;
+         bottom: 0;
+      }
+
+      .SubtitleResultSpan
+      {
+         font-family: sans-serif, mono-serif, proportional-serif, 'mono sans serif', casual, cursive, 'small caps';
+         background-color: rgba( 0, 0, 0, 0.5 );
+         border-color: rgba( 0, 0, 0, 0 );
+         word-wrap: break-word;
+         display: inline-block;
+         line-height: 155%;
+         z-index: 50000;
+      }
+
+      .SubtitleAccessibilitySpan
+      {
+         position: absolute;
+         width: 1px;
+         height: 1px;
+         padding: 0;
+         margin: -1px;
+         overflow: hidden;
+         clip: rect(0, 0, 0, 0);
+         border: 0;
+      }
+
+      .FocusTrap
+      {
+         position: absolute;
+         left: 0px;
+         top: 0px;
+         width: 0px;
+         height: 0px;
+      }
+
+      @-webkit-keyframes pulse {
+         0% {
+            -webkit-box-shadow: 0 0 0 0 rgba(183, 71, 42, 0.4);
+         }
+
+         70% {
+            -webkit-box-shadow: 0 0 0 8px rgba(183, 71, 42, 0.4);
+         }
+
+         100% {
+            -webkit-box-shadow: 0 0 0 0 rgba(183, 71, 42, 0.4);
+         }
+      }
+
+      @keyframes pulse {
+         0% {
+            -moz-box-shadow: 0 0 0 0 rgba(183, 71, 42, 0.4);
+            box-shadow: 0 0 0 0 rgba(183, 71, 42, 0.4);
+         }
+
+         70% {
+            -moz-box-shadow: 0 0 0 8px rgba(183, 71, 42, 0.4);
+            box-shadow: 0 0 0 8px rgba(183, 71, 42, 0.4);
+         }
+
+         100% {
+            -moz-box-shadow: 0 0 0 0 rgba(183, 71, 42, 0.4);
+            box-shadow: 0 0 0 0 rgba(183, 71, 42, 0.4);
+         }
+      }
+
+      /* All high contrast styling rules in IE10+/Edge */
+      @media screen and (-ms-high-contrast: active) {
+         .getStartedButton {
+            border: solid 1px;
+         }
+
+         .getStartedButton:hover,
+         .getStartedButton:focus {
+            -ms-high-contrast-adjust: none;
+            color: #000000;
+            background: #FFFFFF;
+         }
+
+         #ppt-RehearsalDiv {
+            border: solid 1px #FFFFFF;
+         }
+
+         #ppt-Rehearsal-iconWithMessageIcon,
+         #ppt-Rehearsal-temperaturePillWithMessageIcon {
+            filter: brightness(0) invert(100);
+         }
+      }
+
+      /* High Contrast White Mode styling rules in IE10+/Edge */
+      @media screen and (-ms-high-contrast: black-on-white) {
+         .getStartedButton:hover,
+         .getStartedButton:focus {
+            -ms-high-contrast-adjust: none;
+            color: #FFFFFF;
+            background: #000000;
+         }
+
+         #ppt-RehearsalDiv {
+            border: solid 1px #000000;
+         }
+
+         #ppt-Rehearsal-listeningButton:hover,
+         #ppt-Rehearsal-listeningButton {
+            fill: white;
+            border: solid 1px #000000;
+         }
+
+         #ppt-Rehearsal-iconWithMessageIcon,
+         #ppt-Rehearsal-temperaturePillWithMessageIcon,
+         #ppt-Rehearsal-listeningButtonState, 
+         #ppt-Rehearsal-pausedButtonState,
+         #ppt-Rehearsal-pauseButtonState {
+            filter: brightness(0);
+         }
+      }
+   </style>
+</head>
+
+<body scroll="no">
+   <div id="block" style="height:100%;width:100%;position:absolute;background-color:black;left: 0px; top: 0px;"></div>
+   <div id="focusTrap1" style="height:0px;width:0px;left:0px;top:0px;position:absolute;" tabindex="2" onfocus="tryRestoreFocus()"></div>
+   <!-- pptviewerTabIndex should be between these two elements -->
+   <div id="focusTrap2" style="height:0px;width:0px;left:0px;top:0px;position:absolute;" tabindex="5" onfocus="tryRestoreFocus()"></div>
+
+   <script type="text/javascript">
+
+   var officeappsBaseChecks = [
+      new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*officeapps(-df|-ppe)?\\.live(-int)?\\.com$'),
+      new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*(dod|gov)\\.online\\.office365\\.us$'),
+      new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*wac\\.online\\.office\\.eaglex\\.ic\\.gov$'),
+      new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*wac\\.online\\.office\\.microsoft\\.scloud$')
+   ];
+
+   function parseQueryString(queryString) {
+      var j = queryString.slice(1);
+      var parts = j.split("&");
+      var queryParams = [];
+      for (var i = 0; i < parts.length; ++i) {
+         var kv = parts[i].split("=");
+         queryParams[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1]);
+      }
+      return queryParams;
+   }
+   var queryParams = parseQueryString(location.search);
+   var hashParams = parseQueryString(location.hash);
+
+   function isSafeJsUrl( jsEndPoint )
+   {
+      jsEndPoint = jsEndPoint.toLowerCase();
+
+      var wacCdnCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*cdn\\.office\\.net\/pods\/s\/[0-9]*_.*\/.*');
+      var wacGallatinCdnCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*cdn\\.partner\\.officewebapps\\.cn\/pods\/s\/[0-9]*_.*\/.*');
+      var wacBlackforestCdnCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*cdn\\.office\\.de\/pods\/s\/[0-9]*_.*\/.*');
+      var wacTrailblazerCdnCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*cdn\\.office365\\.us\/pods\/s\/[0-9]*_.*\/.*');
+      var wacPathfinderCdnCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*dod\\.cdn\\.office365\\.us\/pods\/s\/[0-9]*_.*\/.*');
+      var wacAirGap08CdnCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*cdn\\.wac\\.online\\.office\\.eaglex\\.ic\\.gov\/pods\/s\/[0-9]*_.*\/.*');
+      var wacAirGap09CdnCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*cdn\\.wac\\.online\\.office\\.microsoft\\.scloud\/pods\/s\/[0-9]*_.*\/.*');
+      var officeappsCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*officeapps(-df|-ppe)?\\.live(-int)?\\.com\/');
+      var castServiceCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*pptservicescast[0-9a-zA-Z-\\.]*\\.office365\\.us\/');
+
+      var wacCdns = [wacCdnCheck, wacGallatinCdnCheck, wacBlackforestCdnCheck, wacTrailblazerCdnCheck, wacPathfinderCdnCheck, officeappsCheck, castServiceCheck, wacAirGap08CdnCheck, wacAirGap09CdnCheck]
+      if( wacCdns.some( function (wacCdn) { return wacCdn.test(jsEndPoint.replace(/:[0-9]+/, '')); } ) )
+      {
+         return true;
+      }
+
+      var jsEndPointAllowList = [ 'https://contentstorage.osi.office.net/boot/powerpoint.boot.edog.js', 'https://contentstorage.osi.office.net/boot/powerpoint.boot.js' ];
+      if( jsEndPointAllowList.indexOf( jsEndPoint ) > -1 )
+         return true;
+
+      var pageBase = window.location.href.split( "SlideShowFrame.html" )[0].toLowerCase();
+      //the replace below removes the port from the URL
+      if ( jsEndPoint.replace(/:[0-9]+/, '').substring(0, pageBase.length) == pageBase ) {
+         return true;
+      }
+
+      var subFolder = "slideshowresources/";
+      if( hashParams[ "PodsLoadSlideShowFrameFromCdn" ] == "true" && pageBase.indexOf(subFolder) > -1 ) {
+         var trimmedPageBase = pageBase.substring(0, pageBase.length - subFolder.length);
+         if( jsEndPoint.replace(/:[0-9]+/, '').substring(0, trimmedPageBase.length) == trimmedPageBase )
+            return true;
+      }
+
+      return false;
+   }
+
+   // define var api for interaction with wrs
+   var api;
+   var pendingPreviewer;
+   var preloadRetryCount = 0;
+
+   // mask during wrs being loading
+   var block = document.getElementById( "block" );
+
+   var loadTimingDict = {};
+   var dependencyJSDict = {};
+   loadTimingDict["BeginDownload"] = Date.now();
+
+   // creat element for WRS boot javascript
+   var bootjs = document.createElement( 'script' );
+   bootjs.type = 'text/javascript';
+   bootjs.crossorigin = 'anonymous';
+   bootjs.onload = PreloadSlideShowFrame;
+   if( isSafeJsUrl( queryParams['BootJS'] ) ) {
+      bootjs.src = queryParams['BootJS'];
+   }
+   else {
+      // Use fallback value to resist attack
+      bootjs.src = 'https://contentstorage.osi.office.net/boot/powerpoint.boot.js';
+   }
+   document.body.appendChild( bootjs );
+
+   if ( queryParams['TranscriberJS'] && queryParams['TranscriberURI'] && queryParams['ClientAudioMessageJS'] && queryParams['SpeechResultMessageJS']
+         && isSafeJsUrl( queryParams['TranscriberJS'] ) && isSafeJsUrl( queryParams['ClientAudioMessageJS'] ) && isSafeJsUrl( queryParams['SpeechResultMessageJS'] )
+         && isSafeJsUrl( queryParams['TranscriberURI'].replace("wss", "https") ) )
+   {
+      PostMessageUpward({ EventType: 28, Message: 'TranscriberJS enabled'});
+
+      // Create element for transcribe/clientAudioMessage/SpeechResultMessage javascript
+      dependencyJSDict["transcriberjs"] = "TranscriberJS";
+      dependencyJSDict["clientAudioMessageJs"] = "ClientAudioMessageJS";
+      dependencyJSDict["speechResultMessageJs"] = "SpeechResultMessageJS";
+
+      if( queryParams['SpeechResponseMessageJS'] && isSafeJsUrl( queryParams['SpeechResponseMessageJS'] ) ) {
+         dependencyJSDict["speechResponseMessageJs"] = "SpeechResponseMessageJS";
+      }
+
+      if( queryParams['RehearsalResultMessageJS'] && isSafeJsUrl( queryParams['RehearsalResultMessageJS'] ) ) {
+         dependencyJSDict["rehearsalResultMessageJs"] = "RehearsalResultMessageJS";
+      }
+
+      if( queryParams['AgentCommandMessageJS'] && isSafeJsUrl( queryParams['AgentCommandMessageJS'] ) ) {
+         dependencyJSDict["agentCommandMessageJs"] = "AgentCommandMessageJS";
+      }
+
+      if( queryParams['QualityStatusMessageJS'] && isSafeJsUrl(queryParams['QualityStatusMessageJS'] ) ) {
+            dependencyJSDict["qualityStatusMessageJs"] = "QualityStatusMessageJS";
+      }
+
+      for( var key in dependencyJSDict ) {
+         loadDependencyJS( key, dependencyJSDict[key] );
+      }
+   }
+
+   var pptViewerAnchorId = "pptViewerAnchor-Met";
+   var pptViewerTabIndex = "3";
+
+   var webpSupport = {
+      lossy: false,
+      lossless: false,
+      alpha: false,
+   };
+
+   function tryRestoreFocus() {
+      // BRS kill switch
+      if( hashParams["PodSlideshowEnableTabLoopFix"] == "false" )
+         return;
+
+      if( api )
+         api.RestoreFocus();
+   }
+
+   function SupportsFeature(feature, value) {
+      webpSupport[feature] = value;
+   }
+   function CheckWebPFeature(feature, callback) {
+      var kTestImages = {
+         lossy: "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA",
+         lossless: "UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==",
+         alpha: "UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==",
+      };
+      var img = document.createElement('img');
+      img.style.display = "none";
+      img.onload = function () {
+         var result = (img.width > 0) && (img.height > 0);
+         callback(feature, result);
+      };
+      img.onerror = function () {
+         callback(feature, false);
+      };
+      img.src = "data:image/webp;base64," + kTestImages[feature];
+   }
+
+   CheckWebPFeature('lossy', SupportsFeature);
+   CheckWebPFeature('lossless', SupportsFeature);
+   CheckWebPFeature('alpha', SupportsFeature);
+
+   function ReportError ( e )
+   {
+      // Category as 2 is FatalContent, 3 is Informational, and 4 is ActionRequested
+      // Referenced //depot/devmainoverride/tenantpptwrsosisvc/pptserviceswrs/Server/web/script/webviewer/ErrorCategory.js.cs
+      if (e.Category != 2 && e.Category != 3 && e.Category != 4) {
+         // post message back for ACE log
+         PostMessageUpward( e );
+      }
+   }
+
+   function OnVisibilityChange(e)
+   {
+      try
+      {
+         // To avoid dependency on SideshowFrame.js.cs, Hardcoded SlideshowMessageEventType.OnVisibilityChange event id
+         PostMessageUpward({ EventType: 26, IsVisible: !document.hidden });
+         if (document.hidden) {
+            window.removeEventListener('visibilitychange', OnVisibilityChange, false);
+         }
+         e.stopImmediatePropagation();
+      }
+      catch (e) {
+         // do nothing when exception from attempting to raise visibility change event
+         PostMessageUpward({ EventType: 28, Message: e });
+      }
+   }
+
+   function Exit()
+   {
+      try{
+         if( document.getElementById( "transcriberjs" ) != null )
+            Transcriber.DisposeInstance();
+
+         if( api && ( typeof api.ExitSlideshow === "function" ) ) {
+            api.ExitSlideshow();
+            PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::Exit - calling Exitslideshow" });
+         }
+         else {
+            // Force dispose before presentation ready, would be triggered by fullscreenChange -> hostMessageHandler -> Exit
+            Dispose( { EventType: 23, IsBeforeReady: true, SlideId: 0 } );
+            PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::Exit - dispose because API is null" });
+         }
+      }
+      catch( e )
+      {
+         // Force dispose when failing to call existent api.ExitSlideshow
+         Dispose( { EventType: 23, IsBeforeReady: true, SlideId: 0 } );
+         PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::Exit - exception", Data: e });
+      }
+   }
+
+   function Dispose( exitEvent )
+   {
+      if( document.getElementById( "transcriberjs" ) != null ) {
+         try {
+            if (exitEvent != null) {
+               var rehearsal = Rehearsal.GetInstance();
+               if ( rehearsal && rehearsal.GetRehearsalState() != RehearsalState.NotStarted ) {
+                  var rehearsalSummaryObj = RehearsalSummaryCollector.GetRehearsalSummaryStateInstance();
+                  exitEvent.Summary = rehearsalSummaryObj.GetRehearsalSummary();
+               } else {
+                  exitEvent.Summary = null;
+               }
+
+               RehearsalSummaryCollector.DisposeInstance();
+            }
+         }
+         catch( e ) {
+             PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::Dispose - exception while Retrieving or Disposing Rehearsal Summary", Data: e });
+         }
+         Transcriber.DisposeInstance();
+      }
+
+      PostMessageUpward( exitEvent );
+      try {
+         if( api && ( typeof api.dispose === "function" ) ) {
+            api.dispose();
+            api = null;
+         }
+         else if( pendingPreviewer && ( typeof pendingPreviewer.Dispose === "function" ) ) {
+            pendingPreviewer.Dispose();
+            pendingPreviewer = null;
+         }
+      }
+      catch( e ) {
+         PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::Dispose - exception", Data: e });
+      }
+      finally {
+         var anchor = document.getElementById( pptViewerAnchorId );
+         if( anchor )
+         {
+            document.body.removeChild( anchor );
+            PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::Dispose - removed anchor" });
+         }
+      }
+
+      PreloadSlideShowFrame();
+   }
+
+   function loadDependencyJS( id, queryParameters )
+   {
+      var scriptTag = document.createElement( 'script' );
+      scriptTag.id = id;
+      scriptTag.type = 'text/javascript';
+      scriptTag.crossorigin = 'anonymous';
+      scriptTag.src = queryParams[queryParameters];
+      scriptTag.onload = function () { loadTimingDict[queryParameters] = Date.now(); tryLogMetrics(); }
+      document.body.appendChild( scriptTag );
+   }
+
+   function tryLogMetrics()
+   {
+      if( loadTimingDict != null && dependencyJSDict != null && Object.keys( loadTimingDict ).length == Object.keys( dependencyJSDict ).length + 1 )
+         PostMessageUpward({ EventType: 28, Message: JSON.stringify( loadTimingDict ) });
+   }
+
+   function PostMessageUpward( message )
+   {
+      window.parent.postMessage( JSON.stringify(message), '*' );
+   }
+
+   function EventHandler(e) {
+      if (e.EventType == ViewerEventType.OnBrowserEvent) {
+         PostMessageUpward( e );
+         return;
+      }
+      switch (e.EventType) {
+         case ViewerEventType.OnError:
+         case ViewerEventType.OnApiError:
+            ReportError( e );
+            break;
+         case ViewerEventType.OnPositionChanged:
+            PostMessageUpward(e);
+
+            // Currently, we only notifyTranscriberOnSlideChange in Rehearsal scenario
+            try {
+               if (navigator.mediaDevices && document.getElementById("transcriberjs") != null
+                  && document.getElementById("clientAudioMessageJs") != null
+                  && document.getElementById("rehearsalResultMessageJs") != null
+                  && document.getElementById("speechResultMessageJs") != null
+                  && document.getElementById("speechResponseMessageJs") != null
+                  && e.SlideIndex != null) {
+                  notifyTranscriberOnSlideChange(e.SlideIndex);
+               }
+            }
+            catch(e) {
+               return;
+            }
+            break;
+         case ViewerEventType.OnSpecialKey:
+         case ViewerEventType.GetCurrentPosition:
+         case ViewerEventType.OnContextMenu:
+         case ViewerEventType.OnPodSessionExpired:
+         case ViewerEventType.OnEnterEndOfSlideshow:
+         case ViewerEventType.OnLeaveEndOfSlideshow:
+         case ViewerEventType.GetCurrentSlideDimensions:
+            PostMessageUpward( e );
+            break;
+         case ViewerEventType.OnExitSlideshow:
+            Dispose( e );
+            window.removeEventListener('visibilitychange', OnVisibilityChange, false);
+            break;
+         case ViewerEventType.RecordQosError:
+            PostMessageUpward( e );
+            break;
+         default:
+            break;
+      }
+   }
+
+   function OnInitSuccess(apiReturned) {
+      pendingPreviewer = null;
+      api = apiReturned;
+      api.RegisterEventHandler("*",EventHandler);
+      api.RegisterErrorHandler(EventHandler);
+
+      PostMessageUpward( { EventType: 6, Message: "OnInitSuccess" } );
+      block.style.display = "none";
+      if( ( typeof api.RestoreFocus === "function" ) ) {
+         api.RestoreFocus();
+      }
+      window.addEventListener('visibilitychange', OnVisibilityChange, false);
+
+      // Set the tabIndex to a value between our two focusTrap divs so that we can control the tab loop
+      var viewerDiv = document.getElementById(pptViewerAnchorId);
+      if( viewerDiv && viewerDiv.firstChild ) {
+         viewerDiv.firstChild.tabIndex = pptViewerTabIndex;
+      }
+   }
+
+   function OnInitFailure( e ) {
+      ReportError( e );
+
+      // Force dispose
+      Dispose( { EventType: 23, IsBeforeReady: true, SlideId: 0 } );
+   }
+
+   function Initiate(hostSessionId, userId, podSessionId, endpoint, wacCluster, slideId, slideIndex, fPrerenderSS, slideShowClickTime,
+      endSlideShowText, hostSupportsSessionRefreshEnabled, bootstrapperUrl, imageCachingEnabled, fileHost,
+      vetoAppSettingsStr, disabledTransitionsList, customTransitionResourceUrl, streamVideoUseThinEmbed, disabledChangeGates,
+      areThirdPartyAddInsAllowed, allowExternalMarketplace) {
+      try {
+         preloadRetryCount = 0;
+         
+         if( pendingPreviewer )
+         {
+            let bootParams = {
+               PresentationId: podSessionId,
+               WacCluster: wacCluster,
+               StartingSlideId: slideId,
+               StartingSlideIndex: slideIndex,
+               VetoAppSettingsStr : vetoAppSettingsStr,
+               DisabledTransitionsList: disabledTransitionsList,
+               CustomTransitionResourceUrl: customTransitionResourceUrl,
+               StreamVideoUseThinEmbed: streamVideoUseThinEmbed,
+               DisabledChangeGates: disabledChangeGates,
+               AreThirdPartyAddInsAllowed: areThirdPartyAddInsAllowed,
+               AllowExternalMarketplace: allowExternalMarketplace,
+               Diagnostics: {
+                  entryPoint: "LaunchSlideShow",
+                  userClickTime: slideShowClickTime,
+                  fileHost: fileHost
+               },
+               SendInitialLog: true
+            };
+            pendingPreviewer.LaunchFromSlide( bootParams );
+         }
+         else 
+         {
+            var initializePodsExistingParameters = CreateInitializePodsExistingParameters(
+               hostSessionId, userId, podSessionId, endpoint, wacCluster, slideId, slideIndex, fPrerenderSS,
+               slideShowClickTime, endSlideShowText, hostSupportsSessionRefreshEnabled, OnInitSuccess, OnInitFailure,
+               "LaunchSlideShow", bootstrapperUrl, imageCachingEnabled, hashParams["InkingEnabled"],
+               hashParams["IsNewSlideShowToolbarEnabled"], hashParams["VideoThruTransparentCanvas"], hashParams["IsFlipgridVideoEnabled"],
+               hashParams["IsTEDVideoEnabled"], areThirdPartyAddInsAllowed, disabledChangeGates, allowExternalMarketplace );
+            var viewer = Microsoft.Office.PowerPoint.Bootstrap.InitializePodsExisting( initializePodsExistingParameters );
+         }
+      }
+      catch(e)
+      {
+         PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::Initiate - exception", Data: e });
+      }
+   }
+
+   window.addEventListener( "message", hostMessageHandler, false );
+
+   function CreateInitializePodsExistingParameters(
+               hostSessionId, userId, podSessionId, endpoint, wacCluster, slideId, slideIndex, fPrerenderSS,
+               slideShowClickTime, endSlideShowText, hostSupportsSessionRefreshEnabled, onInitSuccess, onInitFailure,
+               entryPoint, bootstrapperUrl, imageCachingEnabled, inkingEnabled,
+               isNewSlideShowToolbarEnabled, videoThruTransparentCanvas, isFlipgridVideoEnabled,
+               isTEDVideoEnabled, areThirdPartyAddInsAllowed, disabledChangeGates, allowExternalMarketplace )
+   {
+      var sessionInfomation = {
+         "HostName": "Hermes",
+         "HostSessionId": hostSessionId,
+         "UserId": userId,
+         "DocumentClickTime": slideShowClickTime,
+         "HostInitTime": Date.now(),
+      };
+
+      var liveBroadcastParam = queryParams['wdLiveBroadcast'];
+
+      var appSettings = {
+         "OnDemandServer": endpoint,
+         "WacCluster": wacCluster,
+         "ViewerMode": 2, // read: 0; play: 1; show: 2
+         "StartingSlideId": slideId,
+         "StartingSlideIndex": slideIndex,
+         "UseTransparentBackground": false,
+         "IsCombinedRequestEnabled": fPrerenderSS,
+         "EndSlideShowText": endSlideShowText,
+         "HostSupportsSessionRefreshEnabled": hostSupportsSessionRefreshEnabled,
+         "NoCacheToken": ( imageCachingEnabled == "true" ) ? "" : new Date().getTime(),
+         "LiveBroadcastEnabled": (liveBroadcastParam == undefined || liveBroadcastParam == null ) ? false : true,
+         "InkingEnabled": inkingEnabled,
+         "IsNewSlideShowToolbarEnabled": isNewSlideShowToolbarEnabled,
+         "IsVideoThruTransparentCanvas": videoThruTransparentCanvas,
+         "IsFlipgridVideoEnabled": isFlipgridVideoEnabled,
+         "IsTEDVideoEnabled": isTEDVideoEnabled,
+         "AreThirdPartyAddInsAllowed": areThirdPartyAddInsAllowed,
+         "AllowExternalMarketplace": allowExternalMarketplace,
+         "DisabledChangeGates": disabledChangeGates
+      };
+
+      var wopiPrecheckInfo = {
+         "PodSessionId": podSessionId,
+      };
+
+      var diagnostics = {
+         "entryPoint": entryPoint,
+         "userClickTime": slideShowClickTime,
+      };
+
+      var anchor = document.getElementById( pptViewerAnchorId );
+      var initializePodsExistingParameters = {
+         "Container": anchor,
+         "SessionInformation": sessionInfomation,
+         "ApplicationUrl": null,
+         "WopiPrecheckInfo": wopiPrecheckInfo,
+         "ApplicationCustomSettings": appSettings,
+         "Diagnostics": diagnostics,
+         "FnOnInitializeSuccess": onInitSuccess,
+         "FnOnInitializeFailure": onInitFailure,
+         "BootstrapperUrl": bootstrapperUrl,
+      };
+
+      return initializePodsExistingParameters;
+   }
+
+   function TryCreateSlideShowContainer()
+   {
+      // Create container for wrs
+      var anchor = document.getElementById( pptViewerAnchorId );
+      if( !anchor )
+      {
+         PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::TryCreateSlideshowContainer creating new container" });
+         var pptanchor = document.createElement('div');
+         pptanchor.id = pptViewerAnchorId;
+         document.body.appendChild( pptanchor );
+      }
+   }
+
+   function PreloadSlideShowFrame()
+   {
+      if( preloadRetryCount >= 3 )
+      {
+         PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::PreloadSlideshowFrame did not preload due to exceeding retry count" });
+      }
+      else if( hashParams[ "UserSessionId" ] !== undefined )
+      {
+         try {
+            ++preloadRetryCount;
+            PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::PreloadSlideShowFrame" });
+            var podsBase = GetPodsBase();
+
+            if( podsBase == null || podsBase == "" ) {
+               PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::PreloadSlideshowFrame did not preload due to invalid podsBase" });
+               return;
+            }
+
+            TryCreateSlideShowContainer();
+
+            var initializePreloadParameters = CreateInitializePodsExistingParameters(
+               hashParams[ "UserSessionId" ], null /*userId*/, null /*podSessionId*/, podsBase, hashParams[ "WacCluster" ], null /*slideId*/, null /*slideIndex*/,
+               true /*fPrerenderSS*/, null /*slideShowClickTime*/, hashParams[ "EndSlideShowText" ], hashParams[ "HostSupportsSessionRefreshEnabled" ], OnInitSuccess, OnInitFailure,
+               "PreloadSlideShowFrame", bootjs.src, hashParams[ "ImageCachingEnabled" ], hashParams[ "InkingEnabled" ],
+               hashParams[ "IsNewSlideShowToolbarEnabled" ], hashParams[ "VideoThruTransparentCanvas" ], hashParams[ "IsFlipgridVideoEnabled" ],
+               hashParams[ "IsTEDVideoEnabled" ], false /*areThirdPartyAddInsAllowed*/, undefined /*disabledChangeGates*/, hashParams["IsAllowExternalMarketplace"] );
+
+            pendingPreviewer = Microsoft.Office.PowerPoint.Bootstrap.PreloadApp( initializePreloadParameters );
+         }
+         catch(e) {
+            PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::PreloadSlideShowFrame caught exception", Data: e });
+         }
+      }
+      else
+      {
+         PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::PreloadSlideshowFrame did not preload due to missing usersessionId" });
+      }
+   }
+
+   function dockSlideshowView( topValue, heightValue ) {
+      var pptFrameDOMElement = document.getElementById("pptViewerAnchor-Met");
+      if(pptFrameDOMElement == null )
+         return;
+
+      pptFrameDOMElement.style.top = topValue;
+      pptFrameDOMElement.style.height = heightValue;
+   }
+
+   function hostMessageHandler( event )
+   {
+      var messageData;
+      if( event && event.data ) {
+         try {
+            messageData = JSON.parse( event.data );
+         }
+         catch( err ) {
+            return;
+         }
+
+         switch( messageData.ApiType ) {
+            case 0:
+               // Start
+               block.style.display = "block";
+
+               // Create container for wrs
+               TryCreateSlideShowContainer();
+
+               if ( messageData.FPrerenderSS ) {
+                  var podsBase = GetPodsBase();
+
+                  if (podsBase == null || podsBase == "") {
+                     PostMessageUpward({ EventType: 28, Message: "SlideShowFrame::Failed to start slideshow due to invalid podsBase" });
+                     return;
+                  }
+
+                  var bounds = document.getElementById(pptViewerAnchorId).getBoundingClientRect();
+                  var devicePixelRatio = window.devicePixelRatio || 1;
+                  var availableWidth = Math.round(Math.max(Math.ceil(bounds.width), 300 /*min width*/) * devicePixelRatio);
+                  var availableHeight = Math.round(Math.max(Math.ceil(bounds.height), 201 /*min height*/) * devicePixelRatio);
+
+                  var podsHandlerUrl = podsBase + "PodHandler.ashx?action=RenderSlideShow&PodSID=" + messageData.PodSessionId + "&presentationId=" +
+                     messageData.PodSessionId + "&slideId=" + messageData.SlideId + "&powerpointView=6" +
+                     "&format=4" + "&sw=" + availableWidth + "&sh=" + availableHeight;
+                   var xhr = new XMLHttpRequest();
+                   xhr.open( "GET", podsHandlerUrl, true/*async*/ );
+                   xhr.setRequestHeader( "WaitForSessionTimeoutMs", "0" );
+                   xhr.setRequestHeader( "X-UserSessionId", messageData.UserSessionId );
+                   xhr.setRequestHeader( "X-CorrelationID", messageData.PrerenderCid );
+                   xhr.setRequestHeader( "X-WacCluster", messageData.WacCluster );
+                   xhr.setRequestHeader( "X-SupportSVGInWebGL", messageData.FSupportSVGInWebGL );
+                   xhr.setRequestHeader( "X-SupportsWebP", webpSupport.lossy && webpSupport.lossless && webpSupport.alpha ? "1" : "0" );
+                   xhr.setRequestHeader( "X-RenderShapeBuilder", messageData.RenderShapeBuilder );
+                   xhr.send( null );
+               }
+
+               // TODO: check attributes
+               var userSessionId = messageData.UserSessionId;
+               if( userSessionId == null )
+                  userSessionId = messageData.WacUserSessionId;
+               Initiate(userSessionId, messageData.UserId, messageData.PodSessionId, podsBase, messageData.WacCluster,
+                  messageData.SlideId, messageData.SlideIndex, messageData.FPrerenderSS, messageData.SlideShowClickTime, messageData.EndSlideShowText,
+                  messageData.HostSupportsSessionRefreshEnabled, bootjs.src, messageData.ImageCachingEnabled,
+                  messageData.FileHost, messageData.VetoAppSettingsStr, messageData.DisabledTransitionsList, messageData.CustomTransitionResourceUrl,
+                  messageData.StreamVideoUseThinEmbed, messageData.DisabledChangeGates, messageData.AreThirdPartyAddInsAllowed , messageData.AllowExternalMarketplace);
+
+               break;
+            case 1:
+               // Next
+               if( api && ( typeof api.Next === "function" ) ) {
+                  api.Next();
+               }
+               break;
+            case 2:
+               // Prev
+               if( api && ( typeof api.Prev === "function" ) ) {
+                  api.Prev();
+               }
+               break;
+            case 3:
+               // Exit
+               Exit();
+               break;
+            case 4:
+               // RestoreFocus
+               var pptFrame = document.querySelector( "iframe[id^='pptframe']" );
+               if( pptFrame && ( typeof pptFrame.focus === "function" ) ) {
+                  pptFrame.focus();
+               }
+               if( api && ( typeof api.RestoreFocus === "function" ) ) {
+                  api.RestoreFocus();
+               }
+               break;
+            case 5:
+               // GetCurrentPosition
+               if( api && ( typeof api.GetCurrentPosition === "function" ) ) {
+                  api.GetCurrentPosition();
+               }
+               break;
+            case 6:
+               // GoToSlide
+               if( api && ( typeof api.GoToSlide === "function" ) ) {
+                  api.GoToSlide( messageData.SlideIndex, [ { "TimeLineId" : "0_anim", "Step" : messageData.AnimStep } ] );
+               }
+               break;
+            case 7:
+               // RefreshPodSession
+               if( api && ( typeof api.RefreshPodSession === "function" ) ) {
+                  api.RefreshPodSession( messageData.PodSessionId, messageData.WacCluster );
+               }
+               break;
+            case 8:
+               // Transcriber
+               /* the anchor.getBoundingClientRect().width is for fixing the bug:
+                * When the into slideshow with subtitles enable and exit slideshow happen very closely (into slideshow with subtitles enable and immemdiately exit slideshow)
+                * The post message handler may start exit slideshow first, and then into slideshow with subtitles, 
+                * in this case, the user audio will be opened and no dispose (since the exit slideshow happens first).
+                * 
+                * So check the anchor's width to see if the exit slideshow happens or not, if happens, we do not start to open user's audio
+                */
+               var anchor = document.getElementById("pptViewerAnchor-Met");
+
+               if( navigator.mediaDevices && document.getElementById( "transcriberjs" ) != null
+                  && document.getElementById("clientAudioMessageJs") != null 
+                  && document.getElementById("speechResultMessageJs") != null
+                  && (!messageData.IsRehearsal || (document.getElementById("rehearsalResultMessageJs") != null && document.getElementById("speechResponseMessageJs") != null ) )
+                  && anchor && anchor.getBoundingClientRect().width > 0 ) {
+                  var audioConstraints = messageData.MicrophoneDeviceId ? { deviceId: { exact: messageData.MicrophoneDeviceId } } : true;
+                  navigator.mediaDevices.getUserMedia({ audio: audioConstraints, video: false }).then(function (stream) {
+                     startTranscriber( stream, messageData.SubtitlesAppSettingsStr, messageData.SubtitlesContextStr, messageData.SubtitlesResourceStr, messageData.RehearsalContextStr, messageData.LiveBroadcastContextStr )
+                  } ).catch( function ( err ) {
+                     recordGetUserMediaError(messageData.SubtitlesAppSettingsStr, messageData.SubtitlesContextStr, messageData.SubtitlesResourceStr, messageData.RehearsalContextStr, messageData.LiveBroadcastContextStr, err );
+                  } );
+               }
+               break;
+            case 9:
+               // ShowCursor
+               if ( api && ( typeof api.ShowHideCursor == "function" ) ) {
+                  api.ShowHideCursor( true );
+               }
+               break;
+            case 10:
+               // HideCursor
+               if ( api && ( typeof api.ShowHideCursor == "function" ) ) {
+                  api.ShowHideCursor( false );
+               }
+               break;
+            case 11:
+                // RecordStartedSlideShow
+                if ( pendingPreviewer ) {
+                   pendingPreviewer.RecordStartedSlideShowTimestamp(messageData.StartSlideShowTime);
+                }
+                break;
+            case 12:
+               // SetOsfLocalStorage
+               try {
+                  let osfKeyCheck = new RegExp('^osfCacheVersion|_?_OSF_.+$'); // should equal to osfKeyRegex in SlideshowFrame.js.cs
+                  let isSafeOrigin = officeappsBaseChecks.some(function (regexp) { return regexp.test( event.origin ); });
+                  if ( isSafeOrigin ) {
+                     if (typeof localStorage !== 'undefined' && messageData.OsfLocalStorageData != null) {
+                        for (var key in messageData.OsfLocalStorageData) {
+                           if ( osfKeyCheck.test( key ) ) {
+                              localStorage.setItem(key, messageData.OsfLocalStorageData[key]);
+                           }
+                        }
+                     }
+                  }
+               } catch (e) {
+                  // Error in accessing local storage, ignore
+               }
+               break;
+            case 13:
+               // ToggleTranscriberLiveBroadcastMode
+               try {
+                  setTranscriberLiveBroadcastMode( messageData.IsToggleOn, messageData.PragueSessionInfo );
+               }
+               catch (e) {
+                  // In a rare case, function of setTranscriberLiveBroadcastMode could be reproted not found when exiting slideshow.
+                  // Since eventually this will event will be remove after changing to broadcast subtitle from SpeechFrontdoor, 
+                  // here we ignore the exception
+               }
+               break;
+            case 14:
+               // DockSlideshowView
+               dockSlideshowView( messageData.TopValue, messageData.HeightValue );
+               break;
+            case 15:
+               // PausePresentation
+               if( api && ( typeof api.PausePresentation === "function" ) )
+               {
+                  api.PausePresentation();
+               }
+               break;
+            case 16:
+               // GoToSlideWithTimeLines
+               if( api && ( typeof api.GoToSlide === "function" ) )
+               {
+                  api.GoToSlide( messageData.SlideIndex, messageData.TimeLineMappings );
+               }
+               break;
+            case 17:
+               // GetCurrentPositionWithTimeLines
+               if( api && ( typeof api.GetCurrentPositionWithTimeLines === "function" ) )
+               {
+                  api.GetCurrentPositionWithTimeLines();
+               }
+               break;
+            case 18:
+               // ToggleTranscriberUIVisibility
+               setTranscriberUIVisibility( messageData.HideUI );
+               break;
+            case 19:
+               // SendMessageToInkManager
+               if( api && ( typeof api.PostMessageToInkManager === "function" ) )
+               {
+                  api.PostMessageToInkManager( messageData.Item, messageData.Color );
+               }
+               break;
+            case 20:
+                // GetCurrentSlideDimensions
+                if( api && ( typeof api.GetCurrentSlideDimensions === "function")) {
+                    api.GetCurrentSlideDimensions();
+                }
+                break;
+            case 21:
+               // SetMicrophoneState
+               SetMicrophoneState( messageData.IsMute );
+               break;
+            case 22:
+               // RemoveLegacyFocusTrap
+               var focusTrap1 = document.getElementById( "focusTrap1" );
+               var focusTrap2 = document.getElementById( "focusTrap2" );
+               if (focusTrap1 != null && focusTrap2 != null )
+               {
+                  focusTrap1.parentNode.removeChild( focusTrap1 );
+                  focusTrap2.parentNode.removeChild( focusTrap2 );
+               }
+               var viewerDiv = document.getElementById( "pptViewerAnchor-Met" );
+               if( viewerDiv && viewerDiv.firstChild ) {
+                  viewerDiv.firstChild.tabIndex = 0;
+               }
+               break;
+            default:
+               // unsuported message type from host
+               break;
+         }
+      }
+   }
+
+      function GetPodsBase() {
+         if ( hashParams["PodsLoadSlideShowFrameFromCdn"] == "true" ) {
+            var podsBaseUri = hashParams["PodsBase"];
+            if ( podsBaseUri ) {
+               // Keep same validation with PodBase check in powerpointframe.html
+               var relativeCheck = new RegExp('^\\.{0,2}?\/[0-9a-zA-Z]');
+               var localCheck = new RegExp('^https?:\/\/localhost(:[0-9]+)?\/[0-9a-zA-Z]*');
+               var officeappsCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*officeapps(-df|-ppe)?\\.live(-int)?\\.com\/(pods\/)?');
+               var osiGovPodsCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*pods\\.osi\\.(apps\\.mil|office365\\.us)\/(pods\/)?');
+               var wacGovCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*(dod|gov)\\.online\\.office365\\.us\/(pods\/)?');
+               var wacChinaCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*partner\\.officewebapps\\.cn\/(pods\/)?');
+               var wacGermanyCheck = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*online\\.office\\.de\/(pods\/)?');
+               var wacAirGap08Check = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*wac\\.online\\.office\\.eaglex\\.ic\\.gov\/(pods\/)?');
+               var wacAirGap09Check = new RegExp('^https:\/\/[0-9a-zA-Z-\\.]*wac\\.online\\.office\\.microsoft\\.scloud\/(pods\/)?');
+
+               if ( !relativeCheck.test(podsBaseUri)
+                  && !localCheck.test(podsBaseUri)
+                  && !officeappsCheck.test(podsBaseUri)
+                  && !osiGovPodsCheck.test(podsBaseUri)
+                  && !wacGovCheck.test(podsBaseUri)
+                  && !wacChinaCheck.test(podsBaseUri)
+                  && !wacGermanyCheck.test(podsBaseUri)
+                  && !wacAirGap08Check.test(podsBaseUri)
+                  && !wacAirGap09Check.test(podsBaseUri) ) {
+                  //if the pods url is from the same domain as this page, allow it through
+                  var pageBase = window.location.href.replace(/:[0-9]+/, '').split("/pods/s/")[0];
+                  //the replace below removes the port from the URL
+                  if ( !( window.location.protocol == 'http:' && ( podsBaseUri.substring(0, pageBase.length) == pageBase ) ) ) {
+                     podsBaseUri = null;
+                  }
+               }
+            }
+            return podsBaseUri;
+         }
+         else
+            return window.location.href.split( "SlideShowFrame.html" )[0];
+   }
+   </script><script type="text/javascript" src="SlideShowFrame_data/powerpoint.boot.js"></script><script id="transcriberjs" type="text/javascript" src="SlideShowFrame_data/transcriber.js"></script><script id="clientAudioMessageJs" type="text/javascript" src="SlideShowFrame_data/clientAudioMessage.js"></script><script id="speechResultMessageJs" type="text/javascript" src="SlideShowFrame_data/speechResultMessage.js"></script><script id="speechResponseMessageJs" type="text/javascript" src="SlideShowFrame_data/speechResponseMessage.js"></script><script id="rehearsalResultMessageJs" type="text/javascript" src="SlideShowFrame_data/rehearsalResultMessage.js"></script><script id="qualityStatusMessageJs" type="text/javascript" src="SlideShowFrame_data/qualityStatusMessage.js"></script>
+
+
+<div id="pptViewerAnchor-Met"><iframe id="pptframe-db4e2d0c-3438-4173-95ed-79bad87f1215" style="inset: 0px; width: 100%; height: 100%;" allowfullscreen="true" allowtransparency="true" allow="autoplay https://powerpoint.officeapps.live.com/pods/" src="SlideShowFrame_data/powerpointframe.htm" frameborder="0"></iframe></div></body></html>

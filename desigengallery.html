@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESIGEN GALLERY</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+</head>
+<body>
+<div id="header">
+    <div class="container">
+
+        
+        <div class="disigengallery">
+            <u1>
+            DESIGEN GALLERY
+        </u1>
+        <u2><li>KITCHEN DESIGEN</li>
+            <p>A modular kitchen is one that is made in a factory and custom-designed to suit your needs and budget. It has different modulates assembled together that are finished with a variety of finishes for a sleek look. At Design Cafe we have 400+ interior designers who have custom designed kitchen interiors for 5000+ customers. Check out some of our popular modular kitchen designs.</p>
+        </u2>
+        <div class="img-kitchengallery">
+            <img src="kitchengallery/blue-and-white.jpg" onclick="openfullImg(this.src)">
+            <img src="kitchengallery/l-shape.jpg" onclick="openfullImg(this.src)">
+            <img src="kitchengallery/oil-pullout.jpg" onclick="openfullImg(this.src)">
+            <img src="kitchengallery/parallel shaped.jpg" onclick="openfullImg(this.src)">
+            <img src="kitchengallery/rustic-style.jpg" onclick="openfullImg(this.src)">
+            <img src="kitchengallery/u-shape.jpg" onclick="openfullImg(this.src)">
+            
+        </div>
+        <u3><li>BEDROOM DESIGEN</li>
+            <p>Check out popular Bedroom Designs amongst our 5000+ happy customers.</p>
+        
+        </u3>
+        <div class="img-kitchengallery">
+            <img src="bedroom/modern-bedroom.jpg" onclick="openfullImg(this.src)">
+            <img src="bedroom/modern-bedroom1.jpg" onclick="openfullImg(this.src)">
+            <img src="bedroom/modern-bedroom2.jpg" onclick="openfullImg(this.src)">
+            <img src="bedroom/bedroom-design-yellow.jpg" onclick="openfullImg(this.src)">
+            <img src="bedroom/latest-bedroom-yellow.jpg" onclick="openfullImg(this.src)">
+            <img src="bedroom/bedroom-interiors-with-yellow.jpg" onclick="openfullImg(this.src)">
+            <img src="bedroom/bedroom-interior.jpg" onclick="openfullImg(this.src)">
+            <img src="bedroom/bedroom-side-table.jpg" onclick="openfullImg(this.src)">
+            <img src="bedroom/bedroom-design.jpg" onclick="openfullImg(this.src)">
+            
+        </div>
+        </div>
+    </div>
+</div>
+<script>
+        var fullImgBox = document.getElementById("fullImgBox");
+        var fullImg = document.getElementById("fullImg");
+
+        function openfullImg(pic){
+            fullImgBox.style.display = "flex";
+            fullImg.src = pic;
+
+        }
+        function closefullImg(){
+            fullImgBox.style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
